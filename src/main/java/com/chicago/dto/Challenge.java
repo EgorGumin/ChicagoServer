@@ -1,4 +1,4 @@
-package com.chicago.controller;
+package com.chicago.dto;
 
 import java.util.List;
 

@@ -1,8 +1,9 @@
-package com.chicago.controller;
+package com.chicago.dto;
 
 
 public class Card {
     private String name;
+    private int type;
     private int quantity;
 
     public String getName() {
@@ -11,6 +12,14 @@ public class Card {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     public int getQuantity() {

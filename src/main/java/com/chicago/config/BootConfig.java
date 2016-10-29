@@ -16,5 +16,4 @@ import org.springframework.context.annotation.PropertySources;
 @ComponentScan({"com.chicago.controller"})
 public class BootConfig {
 
-
 }
