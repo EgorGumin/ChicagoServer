@@ -3,7 +3,7 @@
     {
       "name": "Меч",
       "type": 5,
-      "quantity": 7
+      "quantity": 8
     },
     {
       "name": "Топор",
@@ -13,17 +13,17 @@
     {
       "name": "Шакал",
       "type": 4,
-      "quantity": 10
+      "quantity": 9
     },
     {
       "name": "Сокровище",
       "type": 2,
-      "quantity": 5
+      "quantity": 6
     },
     {
       "name": "Вожак стаи",
       "type": 4,
-      "quantity": 6
+      "quantity": 5
     },
     {
       "name": "Щит",

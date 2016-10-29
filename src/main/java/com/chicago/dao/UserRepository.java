@@ -9,10 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * Created by Pavel.
- * Date: 19.03.2016 0:00.
- */
+
 @Repository
 public interface UserRepository extends PagingAndSortingRepository<Users, Long> {
 
