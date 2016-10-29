@@ -1,0 +1,16 @@
+{
+  "cards": [
+    {
+      "name": "Меч",
+      "quantity": 1
+    },
+    {
+      "name": "Топор",
+      "quantity": 1
+    },
+    {
+      "name": "Шакал",
+      "quantity": 52
+    }
+  ]
+}
