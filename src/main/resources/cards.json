@@ -3,17 +3,42 @@
     {
       "name": "Меч",
       "type": 5,
-      "quantity": 1
+      "quantity": 7
     },
     {
       "name": "Топор",
       "type": 0,
-      "quantity": 1
+      "quantity": 9
     },
     {
       "name": "Шакал",
       "type": 4,
-      "quantity": 52
+      "quantity": 10
+    },
+    {
+      "name": "Сокровище",
+      "type": 2,
+      "quantity": 5
+    },
+    {
+      "name": "Вожак стаи",
+      "type": 4,
+      "quantity": 6
+    },
+    {
+      "name": "Щит",
+      "type": 1,
+      "quantity": 7
+    },
+    {
+      "name": "Взрыв",
+      "type": 7,
+      "quantity": 5
+    },
+    {
+      "name": "Лечение",
+      "type": 3,
+      "quantity": 5
     }
   ]
 }

@@ -10,10 +10,9 @@ import org.springframework.context.annotation.PropertySources;
  * Date: 14.02.2016 20:23.
  */
 @Configuration
-//@PropertySources({@PropertySource("classpath:properties/application.properties"),
+@PropertySources({@PropertySource("classpath:properties/application.properties")})
 //        @PropertySource("classpath:properties/webapp.properties")})
-
-@ComponentScan({"com.chicago.controller"})
+@ComponentScan({"com.chicago.controller", "com.chicago.entity", "com.chicago.dao"})
 public class BootConfig {
 
 }
