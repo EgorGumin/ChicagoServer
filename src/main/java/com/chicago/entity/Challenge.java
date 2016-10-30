@@ -14,7 +14,12 @@ public class Challenge {
     private Long id;
 
     @Column(name = "type_id")
-    private long typeId;
+    private Long typeId;
+
+    @ManyToOne
+    @JoinColumn(name = "type_id", insertable = false, updatable = false)
+    private ChallengeType challengeType;
+
 
     @Column(name = "start_date")
     private Date startDate;
@@ -23,10 +28,10 @@ public class Challenge {
     private Date finishDate;
 
     @Column
-    private boolean status;
+    private Boolean status;
 
     @Column(name = "deck_id")
-    private long deckId;
+    private Long deckId;
 
     public Long getId() {
         return id;
@@ -36,12 +41,20 @@ public class Challenge {
         this.id = id;
     }
 
-    public long getTypeId() {
+    public Long getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(int typeId) {
+    public void setTypeId(Long typeId) {
         this.typeId = typeId;
+    }
+
+    public ChallengeType getChallengeType() {
+        return challengeType;
+    }
+
+    public void setChallengeType(ChallengeType challengeType) {
+        this.challengeType = challengeType;
     }
 
     public Date getStartDate() {
@@ -60,19 +73,19 @@ public class Challenge {
         this.finishDate = finishDate;
     }
 
-    public boolean isStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 
-    public long getDeckId() {
+    public Long getDeckId() {
         return deckId;
     }
 
-    public void setDeckId(int deckId) {
+    public void setDeckId(Long deckId) {
         this.deckId = deckId;
     }
 }

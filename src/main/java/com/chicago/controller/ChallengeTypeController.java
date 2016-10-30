@@ -9,9 +9,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Created by color on 29.10.2016.
- */
+
 @RestController
 @RequestMapping("challenge_type")
 public class ChallengeTypeController extends CrudController<ChallengeType, Long> {

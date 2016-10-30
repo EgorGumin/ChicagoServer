@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.Serializable;
 
-/**
- * Created by color on 29.10.2016.
- */
+
 public abstract class CrudController <T, I extends Serializable>{
 
     @RequestMapping(method = RequestMethod.GET, path = "{id}")

@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Created by color on 29.10.2016.
- */
+
 @RestController
 @RequestMapping("user")
 public class UserController  extends CrudController<Users, Long>{
