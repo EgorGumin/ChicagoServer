@@ -3,6 +3,7 @@ package com.chicago.controller;
 import com.chicago.dao.UserRepository;
 import com.chicago.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,7 @@ public class UserController  extends CrudController<Users, Long>{
     private UserRepository userRepository;
 
     @Override
-    protected PagingAndSortingRepository<Users, Long> getRepository() {
+    protected JpaRepository<Users, Long> getRepository() {
         return userRepository;
     }
 }

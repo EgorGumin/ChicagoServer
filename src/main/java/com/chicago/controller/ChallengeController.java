@@ -5,6 +5,7 @@ import com.chicago.dao.UserRepository;
 import com.chicago.entity.Challenge;
 import com.chicago.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class ChallengeController extends CrudController<Challenge, Long> {
     private ChallengeRepository repository;
 
     @Override
-    protected PagingAndSortingRepository<Challenge, Long> getRepository() {
+    protected JpaRepository<Challenge, Long> getRepository() {
         return repository;
     }
 

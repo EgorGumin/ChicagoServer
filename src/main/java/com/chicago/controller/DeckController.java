@@ -5,6 +5,7 @@ import com.chicago.dao.DeckRepository;
 import com.chicago.entity.Challenge;
 import com.chicago.entity.Deck;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ public class DeckController extends CrudController<Deck, Long> {
     private DeckRepository repository;
 
     @Override
-    protected PagingAndSortingRepository<Deck, Long> getRepository() {
+    protected JpaRepository<Deck, Long> getRepository() {
         return repository;
     }
 
