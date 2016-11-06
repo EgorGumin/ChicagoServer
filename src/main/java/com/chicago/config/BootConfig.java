@@ -12,7 +12,7 @@ import org.springframework.context.annotation.PropertySources;
 @Configuration
 @PropertySources({@PropertySource("classpath:properties/application.properties")})
 //        @PropertySource("classpath:properties/webapp.properties")})
-@ComponentScan({"com.chicago.controller", "com.chicago.entity", "com.chicago.dao", "com.chicago.service"})
+@ComponentScan({"com.chicago.controller", "com.chicago.entity", "com.chicago.dao", "com.chicago.service", "com.chicago.dto"})
 public class BootConfig {
 
 }
