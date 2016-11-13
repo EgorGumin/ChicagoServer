@@ -21,6 +21,12 @@ public class UserProgress {
     @Column
     private Integer result;
 
+    @Column
+    private Integer reward;
+
+    @Column(name = "reward_received")
+    private Boolean rewardReceived;
+
     public Long getId() {
         return id;
     }
@@ -51,5 +57,21 @@ public class UserProgress {
 
     public void setResult(Integer result) {
         this.result = result;
+    }
+
+    public Integer getReward() {
+        return reward;
+    }
+
+    public void setReward(Integer reward) {
+        this.reward = reward;
+    }
+
+    public Boolean getRewardReceived() {
+        return rewardReceived;
+    }
+
+    public void setRewardReceived(Boolean rewardReceived) {
+        this.rewardReceived = rewardReceived;
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface UserProgressRepository extends JpaRepository<UserProgress, Long> {
-
+    //TODO check UserProgress
     @Query(value = "select up from UserProgress up where up.challengeId = :challengeId and " +
             "up.userId = :userId")
     UserProgress getUserProgress(@Param("challengeId") Long challengeId, @Param("userId") Long userId);

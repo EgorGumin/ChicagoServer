@@ -40,10 +40,12 @@ public class ResultService{
     @Autowired
     private UserRepository userRepository;
 
+
     public ChallengeStatus applyResult(@RequestBody GameResult gameResult) {
         int prize = 0;
         Challenge challenge = challengeRepository.findOne(gameResult.getChallengeId());
 
+        //check bigint
         BigInteger sum = (BigInteger) upr.getProgress(gameResult.getChallengeId());
         if (sum == null) {
             sum = BigInteger.ZERO;
