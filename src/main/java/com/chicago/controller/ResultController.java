@@ -4,6 +4,7 @@ import com.chicago.dao.ChallengeRepository;
 import com.chicago.dao.UserProgressRepository;
 import com.chicago.dao.UserRepository;
 import com.chicago.dto.ChallengeInfo;
+import com.chicago.dto.ChallengeStatus;
 import com.chicago.dto.GameResult;
 import com.chicago.entity.Challenge;
 import com.chicago.entity.ChallengeType;
@@ -30,10 +31,8 @@ public class ResultController {
     @Autowired
     private ResultService service;
 
-
     @RequestMapping(method = RequestMethod.POST)
-    public ChallengeInfo applyResult(@RequestBody GameResult gameResult) {
+    public ChallengeStatus applyResult(@RequestBody GameResult gameResult) {
        return service.applyResult(gameResult);
     }
-
 }

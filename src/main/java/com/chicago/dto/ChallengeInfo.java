@@ -1,10 +1,9 @@
 package com.chicago.dto;
 
-/**
- * Created by color on 30.10.2016.
- */
+
 public class ChallengeInfo {
     private Long challengeId;
+    //TODO change UserId to userID
     private Long UserId;
     private Integer userProgress;
     private Boolean status;

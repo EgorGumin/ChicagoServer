@@ -6,16 +6,15 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
  * Created by color on 29.10.2016.
  */
 public class GameResult {
-    public GameResult() {
-    }
-
     private Long deckId;
     private Long challengeId;
     private Long userId;
 
-    private int gold;
-    private int enemies;
+    private Integer gold;
+    private Integer enemies;
     private Boolean win;
+    
+    public GameResult() {}
 
     public Long getDeckId() {
         return deckId;
@@ -41,19 +40,19 @@ public class GameResult {
         this.userId = userId;
     }
 
-    public int getGold() {
+    public Integer getGold() {
         return gold;
     }
 
-    public void setGold(int gold) {
+    public void setGold(Integer gold) {
         this.gold = gold;
     }
 
-    public int getEnemies() {
+    public Integer getEnemies() {
         return enemies;
     }
 
-    public void setEnemies(int enemies) {
+    public void setEnemies(Integer enemies) {
         this.enemies = enemies;
     }
 

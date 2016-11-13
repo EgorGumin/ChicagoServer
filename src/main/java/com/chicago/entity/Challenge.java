@@ -20,7 +20,6 @@ public class Challenge {
     @JoinColumn(name = "type_id", insertable = false, updatable = false)
     private ChallengeType challengeType;
 
-
     @Column(name = "start_date")
     private Date startDate;
 

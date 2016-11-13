@@ -25,4 +25,6 @@ public interface ChallengeRepository extends JpaRepository<Challenge, Long> {
             "where c.id = :challengeId", nativeQuery = true)
     Object[][] getCurrentProgress(@Param("challengeId") Long challengeId);
 
+
+
 }

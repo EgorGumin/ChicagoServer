@@ -14,10 +14,4 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<Users, Long> {
 
-//    List<Users> findByName(@Param("username") String name);
-//
-//    @Query(value = "select  u from Users u where u.username like concat('%', :substr,'%') " +
-//            "or u.email like concat('%', :substr,'%')")
-//    List<Users> findBySubstring(@Param("substr") String substr);
-
 }

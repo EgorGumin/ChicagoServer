@@ -4,6 +4,7 @@ import com.chicago.dao.ChallengeRepository;
 import com.chicago.dao.UserProgressRepository;
 import com.chicago.dao.UserRepository;
 import com.chicago.dto.ChallengeInfo;
+import com.chicago.dto.ChallengeStatus;
 import com.chicago.dto.GameResult;
 import com.chicago.entity.Challenge;
 import com.chicago.entity.ChallengeType;
@@ -23,13 +24,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/**
- * Created by color on 30.10.2016.
- */
 
 @Service
 @Transactional
-public class ResultService {
+public class ResultService{
 
     @Autowired
     private UserProgressRepository upr;
@@ -39,15 +37,11 @@ public class ResultService {
 //    @Autowired
 //    private EntityManager em;
 
-
     @Autowired
     private UserRepository userRepository;
 
-    public ChallengeInfo applyResult(@RequestBody GameResult gameResult) {
+    public ChallengeStatus applyResult(@RequestBody GameResult gameResult) {
         int prize = 0;
-        if (!gameResult.getWin()) {
-            return getChallengeInfo(gameResult.getChallengeId(), gameResult.getUserId(), null);
-        }
         Challenge challenge = challengeRepository.findOne(gameResult.getChallengeId());
 
         BigInteger sum = (BigInteger) upr.getProgress(gameResult.getChallengeId());
@@ -62,7 +56,9 @@ public class ResultService {
             userProgress.setUserId(gameResult.getUserId());
             userProgress.setResult(0);
         }
-        userProgress.setResult(userProgress.getResult() + gameResult.getGold());
+        if(gameResult.getWin()){
+            userProgress.setResult(userProgress.getResult() + gameResult.getGold());
+        }
         upr.saveAndFlush(userProgress);
 
         if (sum.intValue() + gameResult.getGold() >= challenge.getChallengeType().getGoal()) {
@@ -72,9 +68,10 @@ public class ResultService {
             List<UserProgress> members = upr.findByChallengeId(
                     gameResult.getChallengeId()).stream()
                     .sorted((o1, o2) -> {
-                        return -Integer.valueOf(o1.getResult()).compareTo(Integer.valueOf(o2.getResult()));
+                        return -o1.getResult().compareTo(o2.getResult());
                     })
                     .collect(Collectors.toList());
+
             for (int i = 0; i < members.size(); i++) {
                 Users user = userRepository.findOne(members.get(i).getUserId());
                 int gold = 0;
@@ -97,6 +94,7 @@ public class ResultService {
                 }
             }
         }
+        //TODO fix the error with order of checking status
         if (!challenge.getStatus() || challenge.getFinishDate().before(new Date())) {
             return getChallengeInfo(gameResult.getChallengeId(), gameResult.getUserId(), null);
         }
@@ -104,21 +102,34 @@ public class ResultService {
         return getChallengeInfo(gameResult.getChallengeId(), gameResult.getUserId(), prize);
     }
 
-    private ChallengeInfo getChallengeInfo(Long userId, Long challengeId, Integer prize) {
-        Object[][] result = upr.getChallengeInfo(challengeId, userId);
+    private ChallengeStatus getChallengeInfo(Long userId, Long challengeId, Integer prize) {
+        //Object[][] result = upr.getChallengeInfo(challengeId, userId);
+        Object[][] result = upr.getChallengeStatus(challengeId, userId);
         if (result == null || result.length == 0) {
             return null;
         }
+        if (prize == null){
+            prize = 0;
+        }
         Object[] row = result[0];
-        ChallengeInfo ci = new ChallengeInfo();
-        ci.setChallengeId(challengeId);
-        ci.setUserId(userId);
-        ci.setPrize(prize);
+        ChallengeStatus challengeStatus = new ChallengeStatus();
+        challengeStatus.setChallengeID(challengeId);
+        challengeStatus.setStatus((Boolean) row[1]);
+        challengeStatus.setUserProgress((Integer) row[2]);
+        challengeStatus.setProgress(((BigInteger) row[3]).intValue());
+        challengeStatus.setPlayerPosition(challengeStatus.getUserProgress().equals(0)? 0:  ((BigInteger) row[4]).intValue());
+        challengeStatus.setPlayersQuantity(((BigInteger) row[5]).intValue());
 
-        ci.setUserProgress((Integer) row[2]);
-        ci.setStatus((Boolean) row[3]);
-        ci.setGoal((Integer) row[4]);
-        ci.setProgress(((BigInteger) row[5]).intValue());
-        return ci;
+
+//        ChallengeInfo ci = new ChallengeInfo();
+//        ci.setChallengeId(challengeId);
+//        ci.setUserId(userId);
+//        ci.setPrize(prize);
+//
+//        ci.setUserProgress((Integer) row[2]);
+//        ci.setStatus((Boolean) row[3]);
+//        ci.setGoal((Integer) row[4]);
+//        ci.setProgress(((BigInteger) row[5]).intValue());
+        return challengeStatus;
     }
 }
