@@ -74,4 +74,12 @@ public class UserProgress {
     public void setRewardReceived(Boolean rewardReceived) {
         this.rewardReceived = rewardReceived;
     }
+
+    public void setDefaultValues(Long challengeID, Long userID) {
+        this.challengeId = challengeID;
+        this.userId = userID;
+        this.reward = -1;
+        this.rewardReceived = false;
+        this.result = 0;
+    }
 }

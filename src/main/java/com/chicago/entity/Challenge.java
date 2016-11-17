@@ -1,7 +1,13 @@
 package com.chicago.entity;
 
+import com.chicago.dao.UserProgressRepository;
+import com.chicago.dao.UserRepository;
+
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "challenges")
@@ -86,5 +92,38 @@ public class Challenge {
 
     public void setDeckId(Long deckId) {
         this.deckId = deckId;
+    }
+
+    public void setRewards(UserProgressRepository upr) {
+        List<UserProgress> userProgressData = upr.findByChallengeId(id).stream()
+                .sorted((o1, o2) -> {
+                    return -o1.getResult().compareTo(o2.getResult());
+                })
+                .collect(Collectors.toList());
+
+        for (int i = 0; i < userProgressData.size(); i++) {
+            UserProgress userProgress = userProgressData.get(i);
+            int gold = 0;
+            BigInteger challengeProgress = (BigInteger) upr.getProgress(id);
+            if (challengeProgress == null) {
+                challengeProgress = BigInteger.ZERO;
+            }
+            if(challengeProgress.intValue() >= challengeType.getGoal())
+            switch (i) {
+                case 0:
+                    gold = challengeType.getPrizeGrand();
+                    break;
+                case 1:
+                    gold = challengeType.getPrizeTop();
+                    break;
+                default:
+                    //TODO fix different info from sql and this sorting algo
+                    if (userProgress.getResult() > 0) {
+                        gold = challengeType.getPrizeParticipate();
+                    }
+            }
+            userProgress.setReward(gold);
+            upr.saveAndFlush(userProgress);
+        }
     }
 }

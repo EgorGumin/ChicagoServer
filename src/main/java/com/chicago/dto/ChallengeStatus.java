@@ -1,6 +1,8 @@
 package com.chicago.dto;
 
 
+import java.math.BigInteger;
+
 public class ChallengeStatus {
     private Long challengeID;
     private Boolean status;
@@ -9,7 +11,17 @@ public class ChallengeStatus {
     private Integer playerPosition;
     private Integer playersQuantity;
 
-    public ChallengeStatus() {
+    public ChallengeStatus(){
+        super();
+    }
+
+    public ChallengeStatus(Object[] data) {
+        this.challengeID = ((BigInteger) data[0]).longValue();
+        this.status = (Boolean) data[1];
+        this.userProgress = (Integer) data[2];
+        this.progress = ((BigInteger) data[3]).intValue();
+        this.playerPosition = this.userProgress.equals(0)? 0:  ((BigInteger) data[4]).intValue();
+        this.playersQuantity = ((BigInteger) data[5]).intValue();
     }
 
     public Long getChallengeID() {
